@@ -3,6 +3,8 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import ComingSoon from "./pages/ComingSoon";
 import EnglishTyping from "./pages/EnglishTyping";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 export default function App() {
   return (
@@ -13,8 +15,8 @@ export default function App() {
         <Route path="/gujarati-typing" element={<ComingSoon title="Gujarati Typing" />} />
         <Route path="/english-to-gujarati-typing" element={<ComingSoon title="English to Gujarati Typing" />} />
         <Route path="/typing-exams" element={<ComingSoon title="Typing Exams" />} />
-        <Route path="/about" element={<ComingSoon title="About" />} />
-        <Route path="/contact" element={<ComingSoon title="Contact" />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<ComingSoon title="Login" />} />
         <Route path="/register" element={<ComingSoon title="Create Account" />} />
         <Route path="*" element={<ComingSoon title="404 - Page Not Found" />} />
