@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useTypingEngine } from "../hooks/useTypingEngine";
 import StatsBar from "./StatsBar";
 
-export default function TypingBox({ text, timeLimit = 0, onNext }) {
+export default function TypingBox({ text, timeLimit = 0, onNext, autoFocus = true }) {
   const inputRef = useRef(null);
   const { typed, handleChange, reset, wpm, accuracy, errors, elapsed, finished, started } =
     useTypingEngine(text, timeLimit);
@@ -47,7 +47,7 @@ export default function TypingBox({ text, timeLimit = 0, onNext }) {
 
         <textarea
           ref={inputRef}
-          autoFocus
+          autoFocus={autoFocus}
           value={typed}
           disabled={finished}
           onChange={(e) => handleChange(e.target.value)}
