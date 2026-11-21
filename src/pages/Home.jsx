@@ -1,44 +1,91 @@
 import { Link } from "react-router-dom";
+import HeroDemo from "../components/HeroDemo";
+import { useAuth } from "../store/authStore";
 
-const features = [
-  { icon: "📚", title: "Structured Lessons", text: "Start from the home row and move step by step to advanced typing. Gujarati starts with Kakko and Barakhadi." },
-  { icon: "⚡", title: "Live Speed Tracking", text: "See your WPM, accuracy and errors instantly while you practice." },
-  { icon: "🏆", title: "Live Typing Tests", text: "Take timed tests and compete with other learners." },
-  { icon: "📈", title: "Progress Reports", text: "Monitor your improvement over time with detailed statistics." },
-  { icon: "🎓", title: "Certificates", text: "Earn downloadable certificates after completing tests." },
-  { icon: "🌐", title: "Two Languages", text: "Practice both English and Gujarati typing in one place." },
+const miniStats = [
+  { label: "Speed", value: "65 WPM" },
+  { label: "Accuracy", value: "98%" },
+  { label: "Accuracy Monitoring", value: "Real-time" },
 ];
 
 const stats = [
   { value: "1,200+", label: "Active Learners" },
   { value: "50,000+", label: "Practice Sessions" },
-  { value: "2", label: "Languages" },
-  { value: "Free", label: "To Start" },
+  { value: "EN · GU", label: "Languages Supported" },
+  { value: "Free", label: "To Get Started" },
+];
+
+const testimonials = [
+  { quote: "Went from 30 to 65 WPM in three weeks. The Gujarati Inscript lessons are brilliant.", name: "Rahul M." },
+  { quote: "Best platform for learning Gujarati typing. Live tests keep me motivated every day.", name: "Priya S." },
+];
+
+const features = [
+  { icon: "📚", title: "Interactive Lessons", text: "Step-by-step lessons for beginners and advanced learners. Start with the English home row asdfg;lkjh and learn Kakko and Barakhadi for Gujarati." },
+  { icon: "🏆", title: "Live Typing Tests", text: "Join scheduled typing tests and compete with other learners to improve your speed and accuracy in real time." },
+  { icon: "⚡", title: "Real-Time Performance Tracking", text: "See your WPM (words per minute), accuracy and typing errors instantly while you practice." },
+  { icon: "📈", title: "Progress Tracking", text: "Watch your typing improve over time with detailed performance statistics and insights." },
+  { icon: "🎯", title: "Practice Challenges", text: "Build consistency and speed through timed practice sessions and focused challenges." },
+  { icon: "🎓", title: "Certificate Generation", text: "Earn downloadable certificates after completing typing tests and training milestones." },
 ];
 
 export default function Home() {
+  const user = useAuth((s) => s.user);
+
   return (
     <div>
+      {/* Hero */}
       <section className="bg-gradient-to-b from-blue-50 to-white">
-        <div className="max-w-6xl mx-auto px-4 py-20 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900">
-            Learn English & Gujarati Typing <span className="text-blue-600">Faster</span>
-          </h1>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            Practice structured lessons, track your speed and accuracy, and take live typing tests.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3 justify-center">
-            <Link to="/english-typing" className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700">
-              Start English Typing
-            </Link>
-            <Link to="/gujarati-typing" className="px-6 py-3 bg-white border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50">
-              Start Gujarati Typing
-            </Link>
+        <div className="max-w-6xl mx-auto px-4 py-16 grid gap-10 lg:grid-cols-2 items-center">
+          <div>
+            <span className="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">
+              Free to start
+            </span>
+            <h1 className="mt-4 text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+              Learn English & Gujarati Typing <span className="text-blue-600">Faster</span>
+            </h1>
+            <p className="mt-4 text-lg text-gray-600">
+              Practice structured lessons, track your speed and accuracy, and compete in live typing tests.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              {user ? (
+                <>
+                  <Link to="/english-typing" className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700">
+                    English Typing
+                  </Link>
+                  <Link to="/gujarati-typing" className="px-6 py-3 bg-white border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50">
+                    Gujarati Typing
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700">
+                    Start Practicing
+                  </Link>
+                  <Link to="/register" className="px-6 py-3 bg-white border border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50">
+                    Create Free Account
+                  </Link>
+                </>
+              )}
+            </div>
+
+            <div className="mt-8 grid grid-cols-3 gap-3 max-w-md">
+              {miniStats.map((s) => (
+                <div key={s.label} className="bg-white border border-gray-200 rounded-lg p-3 text-center">
+                  <div className="text-lg font-bold text-blue-600">{s.value}</div>
+                  <div className="text-xs text-gray-500">{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
+
+          <HeroDemo />
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 -mt-6">
+      {/* Stats */}
+      <section className="max-w-6xl mx-auto px-4">
         <div className="bg-white rounded-xl shadow grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100">
           {stats.map((s) => (
             <div key={s.label} className="p-6 text-center">
@@ -49,8 +96,22 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold text-center text-gray-900">Everything you need to type faster</h2>
+      {/* Testimonials */}
+      <section className="max-w-6xl mx-auto px-4 py-12 grid gap-6 md:grid-cols-2">
+        {testimonials.map((t) => (
+          <figure key={t.name} className="bg-white border border-gray-200 rounded-xl p-6">
+            <blockquote className="text-gray-700">“{t.quote}”</blockquote>
+            <figcaption className="mt-3 font-semibold text-gray-900">— {t.name}</figcaption>
+          </figure>
+        ))}
+      </section>
+
+      {/* Features */}
+      <section className="max-w-6xl mx-auto px-4 pb-8">
+        <p className="text-center text-sm font-semibold text-blue-600 uppercase tracking-wide">What We Offer</p>
+        <h2 className="mt-1 text-3xl font-bold text-center text-gray-900">Features</h2>
+        <p className="mt-2 text-center text-gray-600">With interactive lessons, real-time tracking, and certificates.</p>
+
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => (
             <div key={f.title} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition">
@@ -59,15 +120,6 @@ export default function Home() {
               <p className="mt-1 text-gray-600 text-sm">{f.text}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="max-w-6xl mx-auto px-4">
-        <div className="bg-blue-600 rounded-2xl text-center text-white py-12 px-4">
-          <h2 className="text-2xl md:text-3xl font-bold">Start your typing journey today</h2>
-          <Link to="/register" className="inline-block mt-6 px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50">
-            Create Free Account
-          </Link>
         </div>
       </section>
     </div>
