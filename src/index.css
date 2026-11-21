@@ -5,3 +5,73 @@ body {
   font-family: system-ui, sans-serif;
   background: #f8fafc;
 }
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+html.dark .bg-white {
+  background-color: #1e293b;
+}
+
+html.dark .bg-gray-50 {
+  background-color: #0f172a;
+}
+
+html.dark .bg-gray-100 {
+  background-color: #334155;
+}
+
+html.dark .bg-blue-50 {
+  background-color: #172554;
+}
+
+html.dark .bg-blue-100 {
+  background-color: #1e3a8a;
+}
+
+html.dark .bg-blue-200 {
+  background-color: #1e40af;
+}
+
+html.dark .bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, #172554, #0f172a);
+}
+
+html.dark .text-gray-900,
+html.dark .text-gray-800 {
+  color: #f1f5f9;
+}
+
+html.dark .text-gray-700,
+html.dark .text-gray-600 {
+  color: #cbd5e1;
+}
+
+html.dark .text-gray-500 {
+  color: #94a3b8;
+}
+
+html.dark .text-blue-600 {
+  color: #60a5fa;
+}
+
+html.dark .text-blue-700 {
+  color: #93c5fd;
+}
+
+html.dark .border-gray-100,
+html.dark .border-gray-200,
+html.dark .border-gray-300,
+html.dark .divide-gray-100 > :not(:last-child) {
+  border-color: #334155;
+}
+
+html.dark .border-blue-100 {
+  border-color: #1e40af;
+}

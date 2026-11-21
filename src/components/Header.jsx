@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../store/authStore";
 
 const links = [
+  { to: "/", label: "Home", icon: "🏠" },
   { to: "/english-typing", label: "English Typing" },
   { to: "/gujarati-typing", label: "Gujarati Typing" },
   { to: "/typing-exams", label: "Typing Exams" },
@@ -10,16 +11,36 @@ const links = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    () => window.localStorage.getItem("typing-tutor-theme") === "dark"
+  );
   const navigate = useNavigate();
   const { user, logout } = useAuth();
 
   const name = user?.user_metadata?.full_name || user?.email;
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
+    window.localStorage.setItem("typing-tutor-theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
 
   const handleLogout = async () => {
     await logout();
     setOpen(false);
     navigate("/");
   };
+
+  const themeButton = (
+    <button
+      type="button"
+      onClick={() => setDarkMode((current) => !current)}
+      aria-pressed={darkMode}
+      className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium border border-gray-300 rounded-md hover:bg-gray-100"
+    >
+      <span aria-hidden="true">{darkMode ? "🌙" : "☀️"}</span>
+      {darkMode ? "" : ""}
+    </button>
+  );
 
   const linkClass = ({ isActive }) =>
     `px-3 py-2 rounded-md text-sm font-medium ${
@@ -37,6 +58,7 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-1">
           {links.map((l) => (
             <NavLink key={l.to} to={l.to} className={linkClass}>
+              {l.icon && <span aria-hidden="true">{l.icon} </span>}
               {l.label}
             </NavLink>
           ))}
@@ -44,6 +66,7 @@ export default function Header() {
 
         {/* Desktop auth area */}
         <div className="hidden md:flex items-center gap-2">
+          {themeButton}
           {user ? (
             <>
               <span className="text-sm text-gray-700 max-w-[160px] truncate">Hi, {name}</span>
@@ -77,9 +100,12 @@ export default function Header() {
         <div className="md:hidden border-t border-gray-200 px-4 py-3 flex flex-col gap-1 bg-white">
           {links.map((l) => (
             <NavLink key={l.to} to={l.to} className={linkClass} onClick={() => setOpen(false)}>
+              {l.icon && <span aria-hidden="true">{l.icon} </span>}
               {l.label}
             </NavLink>
           ))}
+
+          {themeButton}
 
           {user ? (
             <>
