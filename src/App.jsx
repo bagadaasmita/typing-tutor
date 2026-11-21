@@ -5,6 +5,7 @@ import ComingSoon from "./pages/ComingSoon";
 import EnglishTyping from "./pages/EnglishTyping";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import TypingExams from "./pages/TypingExams";
 
 export default function App() {
   return (
@@ -13,8 +14,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/english-typing" element={<EnglishTyping />} />
         <Route path="/gujarati-typing" element={<ComingSoon title="Gujarati Typing" />} />
-        <Route path="/english-to-gujarati-typing" element={<ComingSoon title="English to Gujarati Typing" />} />
-        <Route path="/typing-exams" element={<ComingSoon title="Typing Exams" />} />
+        <Route path="/typing-exams" element={<TypingExams />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<ComingSoon title="Login" />} />

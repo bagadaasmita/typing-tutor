@@ -4,7 +4,6 @@ import { Link, NavLink } from "react-router-dom";
 const links = [
   { to: "/english-typing", label: "English Typing" },
   { to: "/gujarati-typing", label: "Gujarati Typing" },
-  { to: "/english-to-gujarati-typing", label: "English to Gujarati" },
   { to: "/typing-exams", label: "Typing Exams" },
 ];
 
