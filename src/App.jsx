@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import { useAuth } from "./store/authStore";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import TypingExams from "./pages/TypingExams";
 
 export default function App() {
   const init = useAuth((s) => s.init);
@@ -31,8 +32,7 @@ export default function App() {
         {/* Open to everyone: content + demo */}
         <Route path="/english-typing" element={<EnglishLanding />} />
         <Route path="/gujarati-typing" element={<GujaratiLanding />} />
-        <Route path="/english-to-gujarati-typing" element={<ComingSoon title="English to Gujarati Typing" />} />
-        <Route path="/typing-exams" element={<ComingSoon title="Typing Exams" />} />
+        <Route path="/typing-exams" element={<TypingExams />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
